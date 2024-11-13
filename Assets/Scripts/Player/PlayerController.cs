@@ -20,8 +20,8 @@ public class PlayerController : MonoBehaviour, IHit
 
     void Start()
     {
-        moveValue = Vector3.zero;
-        curPos = transform.position;
+        moveValue = Vector3.zero; // 무브밸류 0
+        curPos = transform.position; // 컬포스 지금위치로
     }
 
     public void Move(InputAction.CallbackContext context) // 인풋액션으로 받아옴
@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour, IHit
             if(input.magnitude == 0f) // 대각선이동이 없을때
             {
                 Moving(transform.position + moveValue); // 현재 위치에 무브밸류를 더해이동
-                Rotate(moveValue); // 회전
+                Rotate(moveValue); // 회전 왼쪽이면 -1 정면0 오른쪽 1 * 90
                 moveValue = Vector3.zero; // 한번 이동햇으니 초기화?
             }
             else // 단일 방향으로 이동할떄
@@ -53,19 +53,19 @@ public class PlayerController : MonoBehaviour, IHit
 
     void Rotate(Vector3 pos)
     {
-        chick.rotation = Quaternion.Euler(270, pos.x * 90, 0); // 회전
+        chick.rotation = Quaternion.Euler(270, pos.x * 90, 0); // 회전. +가 아니고 대입.
     }
 
     void SetMoveForwardState()
     {
-        Manager.instance.UpdateDistanceCount();
-        curPos = transform.position;
+        Manager.instance.UpdateDistanceCount(); //거리 +1 카운트
+        curPos = transform.position; // 커포스를 지금위치로 설정
     }
 
-    public void GetHit()
+    public void GetHit() //맞으면
     {
-        Manager.instance.GameOver();
-        isDead = true;
+        Manager.instance.GameOver(); //게임오버
+        isDead = true; // 쥬금
         ParticleSystem.EmissionModule em = particle.emission;
         em.enabled = true;
     }

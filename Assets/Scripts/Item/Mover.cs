@@ -10,33 +10,33 @@ public class Mover : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(speed * Time.deltaTime, 0, 0);
+        transform.Translate(speed * Time.deltaTime, 0, 0); // x값 스피드만큼 ++
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            if (parentOnTrigger)
+        if (other.CompareTag("Player")) // 태그 플레이어와 닿으면
+        { 
+            if (parentOnTrigger) 
             {
-                other.transform.parent = this.transform;
+                other.transform.parent = this.transform; // 트리거에 닿은친구 부모를 여기로함 (같이 움직일라고)
             }
 
-            if (hitBoxOnTrigger)
+            if (hitBoxOnTrigger) //히트박스에 닿으면
             {
-                other.GetComponent<IHit>().GetHit();
+                other.GetComponent<IHit>().GetHit(); //죽 음
             }
 
         }
     }
 
-    void OnTriggerExit(Collider other)
+    void OnTriggerExit(Collider other) 
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player")) //태그 플레이어와 닿은게 깨지면
         {
             if (parentOnTrigger)
             {
-                other.transform.parent = null;
+                other.transform.parent = null; //부모 널
             }
         }
     }

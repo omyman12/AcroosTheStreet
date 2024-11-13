@@ -34,7 +34,7 @@ public class Spawner : MonoBehaviour
         }
         else
         {
-            speed = Random.Range(speedMin, speedMax);
+            speed = Random.Range(speedMin, speedMax); // 스피드 랜덤
         }
     }
 
@@ -42,19 +42,19 @@ public class Spawner : MonoBehaviour
     {
         if (useSpawnPlacement) return;
 
-        if (Time.time > lastTime + delayTime)
+        if (Time.time > lastTime + delayTime) // 딜레이 
         {
-            lastTime = Time.time;
-            delayTime = Random.Range(delayMin, delayMax);
-            SpawnItem();
+            lastTime = Time.time; // 라스트타임 초기화
+            delayTime = Random.Range(delayMin, delayMax); // 딜레이타임 랜덤
+            SpawnItem(); // 
         }
     }
 
     void SpawnItem()
     {
         Debug.Log("Spawn Item");
-        GameObject obj = Manager.instance.SpawnFromPool(Item.id);
-        obj.transform.position = GetSpawnPosition();
+        GameObject obj = Manager.instance.SpawnFromPool(Item.id); //풀에서 꺼내옴
+        obj.transform.position = GetSpawnPosition(); // 오브제의 포지션을 겟스폰포지션으로
 
         float direction = 0;
         if (goLeft) direction = 180;
@@ -67,11 +67,12 @@ public class Spawner : MonoBehaviour
 
     }
 
-    Vector3 GetSpawnPosition()
+    Vector3 GetSpawnPosition() // 
     {
         if (useSpawnPlacement)
         {
             return new Vector3(Random.Range(spawnLeftPos, spawnRightPos), startPos.position.y, startPos.position.z);
+            //왼쪽 오른쪽중에 랜덤x
         }
         else
         {
