@@ -23,7 +23,7 @@ public class CameraShake : MonoBehaviour
         float shakePeriodTime = 0.25f; // period of each shake
         float dropOffTime = 1.25f; // how long it takes to settle down to nothing
 
-        LTDescr shakeTween = LeanTween
+        LTDescr shakeTween = LeanTween // 린트윈을 이용한 카메라쉐이크인듯
             .rotateAroundLocal(gameObject, Vector3.right, shakeAmt, shakePeriodTime)
             .setEase(LeanTweenType.easeShake)
             .setLoopClamp()

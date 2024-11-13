@@ -46,7 +46,7 @@ public class Spawner : MonoBehaviour
         {
             lastTime = Time.time; // 라스트타임 초기화
             delayTime = Random.Range(delayMin, delayMax); // 딜레이타임 랜덤
-            SpawnItem(); // 
+            SpawnItem(); // 아이템 스폰
         }
     }
 
@@ -56,13 +56,14 @@ public class Spawner : MonoBehaviour
         GameObject obj = Manager.instance.SpawnFromPool(Item.id); //풀에서 꺼내옴
         obj.transform.position = GetSpawnPosition(); // 오브제의 포지션을 겟스폰포지션으로
 
-        float direction = 0;
-        if (goLeft) direction = 180;
+        float direction = 0; //방향 0
+        if (goLeft) direction = 180; //왼쪽일때 방향 180
 
         if (!useSpawnPlacement)
         {
-            obj.GetComponent<Mover>().speed = speed;
+            obj.GetComponent<Mover>().speed = speed; // 오브제 속도를 스피드로 맞춤
             obj.transform.rotation = obj.transform.rotation * Quaternion.Euler(0, direction, 0);
+            // 오브제의 회전에 direction을 곱함
         }
 
     }
@@ -72,7 +73,7 @@ public class Spawner : MonoBehaviour
         if (useSpawnPlacement)
         {
             return new Vector3(Random.Range(spawnLeftPos, spawnRightPos), startPos.position.y, startPos.position.z);
-            //왼쪽 오른쪽중에 랜덤x
+            //왼쪽 오른쪽중에 랜덤x 를 구해 랜덤스폰되게
         }
         else
         {

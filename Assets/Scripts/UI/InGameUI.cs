@@ -10,12 +10,12 @@ public class InGameUI : MonoBehaviour
 
     private void Start()
     {
-        Manager.instance.coins += UpdateCoinCount;
-        Manager.instance.distance += UpdateDistanceCount;
-        Manager.instance.gameOver += GameOver;
+        Manager.instance.coins += UpdateCoinCount; // 코인 업데이트
+        Manager.instance.distance += UpdateDistanceCount; //거리 업데이트
+        Manager.instance.gameOver += GameOver; // 게임오버
     }
 
-    public void UpdateCoinCount(int value)
+    public void UpdateCoinCount(int value) 
     {
         coin.text = value.ToString();
     }
@@ -30,13 +30,13 @@ public class InGameUI : MonoBehaviour
         guiGameOver.SetActive(true);
     }
 
-    public void PlayAgain()
+    public void PlayAgain() // 다시시작
     {
-        Scene scene = SceneManager.GetActiveScene();
-        Manager.instance.coins -= UpdateCoinCount;
+        Scene scene = SceneManager.GetActiveScene(); // 현재 씬 정보를 씬에 저장
+        Manager.instance.coins -= UpdateCoinCount; // 이벤트 등록취소
         Manager.instance.distance -= UpdateDistanceCount;
         Manager.instance.gameOver -= GameOver;
-        SceneManager.LoadScene(scene.name);
+        SceneManager.LoadScene(scene.name); // 씬로드
     }
 
     public void Quit()

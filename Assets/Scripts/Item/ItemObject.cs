@@ -9,9 +9,9 @@ public class ItemObject : MonoBehaviour
 
     private void Update()
     {
-        if (transform.position.x < -25f || transform.position.x > 25f)
+        if (transform.position.x < -25f || transform.position.x > 25f) // 화면 밖에 나가면
         {
-            Manager.instance.ReturnObject(gameObject, id);
+            Manager.instance.ReturnObject(gameObject, id); // 리턴하는듯
         }
     }
 }
